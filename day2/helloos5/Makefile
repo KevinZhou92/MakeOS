@@ -31,8 +31,9 @@ install :
 	../../tolsetOSX/z_tools/imgtol.com w a: helloos.img
 
 clean :
-	-del ipl.bin
-	-del ipl.lst
+	rm ipl.bin
+	rm ipl.lst
+	rm helloos.img
 
 src_only :
 	make clean
