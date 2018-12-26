@@ -1,7 +1,7 @@
 
 # デフォルト動作
 
-default :
+all :
 	make img
 
 # ファイル生成規則
