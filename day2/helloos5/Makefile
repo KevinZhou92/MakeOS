@@ -2,38 +2,38 @@
 # デフォルト動作
 
 default :
-	../z_tools/make.exe img
+	make img
 
 # ファイル生成規則
 
 ipl.bin : ipl.nas Makefile
-	../z_tools/nask.exe ipl.nas ipl.bin ipl.lst
+	../../tolsetOSX/z_tools/nask ipl.nas ipl.bin ipl.lst
 
 helloos.img : ipl.bin Makefile
-	../z_tools/edimg.exe   imgin:../z_tools/fdimg0at.tek \
+	../../tolsetOSX/z_tools/edimg   imgin:../../tolsetOSX/z_tools/fdimg0at.tek \
 		wbinimg src:ipl.bin len:512 from:0 to:0   imgout:helloos.img
 
 # コマンド
 
 asm :
-	../z_tools/make.exe -r ipl.bin
+	make -r ipl.bin
 
 img :
-	../z_tools/make.exe -r helloos.img
+	make -r helloos.img
 
 run :
-	../z_tools/make.exe img
-	copy helloos.img ..\z_tools\qemu\fdimage0.bin
-	../z_tools/make.exe -C ../z_tools/qemu
+	make img
+	copy helloos.img ../../tolsetOSX/z_tools/qemu/fdimage0.bin
+	make -C ../../tolsetOSX/z_toolss/qemu
 
 install :
-	../z_tools/make.exe img
-	../z_tools/imgtol.com w a: helloos.img
+	make img
+	../../tolsetOSX/z_tools/imgtol.com w a: helloos.img
 
 clean :
 	-del ipl.bin
 	-del ipl.lst
 
 src_only :
-	../z_tools/make.exe clean
+	make clean
 	-del helloos.img
