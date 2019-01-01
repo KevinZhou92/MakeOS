@@ -44,6 +44,7 @@ clean :
 	-$(DEL) ipl.lst
 	-$(DEL) haribote.sys
 	-$(DEL) haribote.lst
+	-$(DEL) haribote.img
 
 src_only :
 	$(MAKE) clean
