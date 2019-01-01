@@ -1,0 +1,36 @@
+     1 00000000                                 ; haribote-os
+     2 00000000                                 ; TAB=4
+     3 00000000                                 
+     4                                          		ORG		0xc200			; set the origin address in memory to 0Xc2000
+     5 0000C200                                 
+     6 0000C200 B0 13                           		MOV		AL,0x13			; VGA graphic card, 320X200X8 colorful mode
+     7 0000C202 B4 00                           		MOV		AH,0x00
+     8 0000C204 CD 10                           		INT		0x10
+     9 0000C206                                 
+    10 0000C206 BE C21E                         		MOV SI, msg   			; load memory address of lable 'msg' into si
+    11 0000C209                                 
+    12 0000C209                                 display:
+    13 0000C209 8A 04                           		MOV AL, [SI]
+    14 0000C20B 83 C6 01                        		ADD SI, 1
+    15 0000C20E 3C 00                           		CMP AL, 0
+    16 0000C210 74 09                           		JE fin
+    17 0000C212 B4 0E                           		MOV AH, 0x0e
+    18 0000C214 BB 000F                         		MOV BX, 15
+    19 0000C217 CD 10                           		INT		0x10
+    20 0000C219 EB EE                           		JMP display
+    21 0000C21B                                 		
+    22 0000C21B                                 
+    23 0000C21B                                 fin:
+    24 0000C21B F4                              		HLT
+    25 0000C21C EB FD                           		JMP		fin
+    26 0000C21E                                 
+    27 0000C21E 0A 0A                           msg:    DB 0X0A, 0X0A
+    28 0000C220 57 65 6C 63 6F 6D 65 20 74 6F   		DB "Welcome to My OS. ONE OS"
+       0000C22A 20 4D 79 20 4F 53 2E 20 4F 4E 
+       0000C234 45 20 4F 53 
+    29 0000C238 0A                              		DB 0X0A
+    30 0000C239 41 75 74 68 6F 72 3A 20 50 65   		DB "Author: Pengcheng Zhou"
+       0000C243 6E 67 63 68 65 6E 67 20 5A 68 
+       0000C24D 6F 75 
+    31 0000C24F 0A                              		DB 0x0a
+    32 0000C250 00                              		Db 0
