@@ -45,6 +45,7 @@ clean :
 	-$(DEL) haribote.sys
 	-$(DEL) haribote.lst
 	-$(DEL) haribote.img
+	-$(DEL) *.bat 
 
 src_only :
 	$(MAKE) clean
