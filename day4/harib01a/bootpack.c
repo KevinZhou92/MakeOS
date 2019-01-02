@@ -5,11 +5,19 @@ void HariMain(void)
 {
 	int i; /* 変数宣言。iという変数は、32ビットの整数型 */
 
+	int color = 15;
 	for (i = 0xa0000; i <= 0xaffff; i++) {
-		write_mem8(i, 15); /* MOV BYTE [i],15 */
+		write_mem8(i, color--); /* MOV BYTE [i],15 */
+		if (color == 0) {
+			color = 15;
+		}
 	}
 
-	for (;;) {
+	fin:
 		io_hlt();
-	}
+		goto fin;
+
+	// for (;;) {
+	// 	io_hlt();
+	// }
 }
