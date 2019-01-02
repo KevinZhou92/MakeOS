@@ -1,5 +1,6 @@
 */.DS_Store
 .DS_Store
 gitupdate.sh
+gitlocalupdate.sh
 # Reserve toolset folder for mac dev
 # tolsetOSX/
