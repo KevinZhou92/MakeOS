@@ -80,6 +80,8 @@ next:
 		MOV		[0x0ff0],CH		; IPL‚ª‚Ç‚±‚Ü‚Å“Ç‚ñ‚¾‚Ì‚©‚ðƒƒ‚
 		JMP		0xc200
 
+
+
 error:
 		MOV		SI,msg
 putloop:
@@ -94,12 +96,14 @@ putloop:
 fin:
 		HLT						; ‰½‚©‚ ‚é‚Ü‚ÅCPU‚ð’âŽ~‚³‚¹‚é
 		JMP		fin				; –³ŒÀƒ‹[ƒv
+
+ß
 msg:
 		DB		0x0a, 0x0a		; ‰üs‚ð2‚Â
 		DB		"load error"
 		DB		0x0a			; ‰üs
 		DB		0
 
-		RESB	0x7dfe-$		; 0x7dfe‚Ü‚Å‚ð0x00‚Å–„‚ß‚é–½—ß
+		times 510 - ($ - $$) DB 0		; 0x7dfe‚Ü‚Å‚ð0x00‚Å–„‚ß‚é–½—ß
 
 		DB		0x55, 0xaa
