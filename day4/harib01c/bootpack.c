@@ -8,7 +8,7 @@ void HariMain(void)
 	for (i = 0xa0000; i <= 0xaffff; i++) {
 
 		// p = (char*) i; /* ”Ô’n‚ð‘ã“ü */
-		*((char*) i) = i & 0x0f;
+		*((char *) i) = i & 0x0f;
 
 		/* ‚±‚ê‚Å write_mem8(i, i & 0x0f); ‚Ì‘ã‚í‚è‚É‚È‚é */
 	}

@@ -3,7 +3,7 @@ void write_mem8(int addr, int data);
 
 void HariMain(void)
 {
-	int i; /* •Ï”éŒ¾Bi‚Æ‚¢‚¤•Ï”‚ÍA32ƒrƒbƒg‚Ì®”Œ^ */
+	int i; /* å˜é‡å£°æ˜, iæ˜¯ä¸€ä¸ª32ä½æ•´æ•° */
 
 	int color = 15;
 	for (i = 0xa0000; i <= 0xaffff; i++) {
