@@ -49,6 +49,23 @@ _HariMain:
 	pushl	$320
 	pushl	$655360
 	call	_boxfill8
+	pushl	$75
+	pushl	$185
+	pushl	$60
+	pushl	$170
+	pushl	$1
+	pushl	$320
+	pushl	$655360
+	call	_boxfill8
+	addl	$56, %esp
+	pushl	$140
+	pushl	$185
+	pushl	$90
+	pushl	$170
+	pushl	$4
+	pushl	$320
+	pushl	$655360
+	call	_boxfill8
 	pushl	$173
 	pushl	$319
 	pushl	$173
