@@ -37,6 +37,13 @@ void HariMain(void)
 
 	boxfill8(vram, xsize, COL8_008484,  0,         0,          xsize -  1, ysize - 29);
 	boxfill8(vram, xsize, COL8_C6C6C6,  0,         ysize - 28, xsize -  1, ysize - 28);
+	
+	// draw a 'Hi' in the screen
+
+	boxfill8(vram, xsize, COL8_C6C6C6,  100,         ysize - 140, 110, ysize - 60);
+	boxfill8(vram, xsize, COL8_FFFF00,  110,         ysize - 105, 140, ysize - 95);
+	boxfill8(vram, xsize, COL8_C6C6C6,  140,         ysize - 140, 150, ysize - 60);
+
 	boxfill8(vram, xsize, COL8_FFFFFF,  0,         ysize - 27, xsize -  1, ysize - 27);
 	boxfill8(vram, xsize, COL8_C6C6C6,  0,         ysize - 26, xsize -  1, ysize -  1);
 
