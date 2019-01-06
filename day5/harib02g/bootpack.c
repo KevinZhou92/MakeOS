@@ -46,7 +46,8 @@ void HariMain(void)
 	putfonts8_asc(binfo->vram, binfo->scrnx,  8, 8, COL8_FFFFFF, "ABC 123");
 	putfonts8_asc(binfo->vram, binfo->scrnx, 31, 31, COL8_000000, "Haribote OS.");
 	putfonts8_asc(binfo->vram, binfo->scrnx, 30, 30, COL8_FFFFFF, "Haribote OS.");
-	sprintf(s, "scrnx = %d", binfo->scrnx);
+	sprintf(s, "scrnx = %d ", binfo->scrnx);
+	sprintf(s + 12, "Author = %s", "Kevin Zhou");
 	putfonts8_asc(binfo->vram, binfo->scrnx, 16, 64, COL8_FFFFFF, s);
 
 	for (;;) {
