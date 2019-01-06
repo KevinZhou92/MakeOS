@@ -40,7 +40,7 @@ void HariMain(void)
 
 	init_palette();
 	init_screen(binfo->vram, binfo->scrnx, binfo->scrny);
-	putfonts8_asc(binfo->vram, binfo->scrnx,  8,  8, COL8_FFFFFF, "ABC 123");
+	putfonts8_asc(binfo->vram, binfo->scrnx,  8,  8, COL8_FFFFFF, "Kevin Zhou");
 	putfonts8_asc(binfo->vram, binfo->scrnx, 31, 31, COL8_000000, "Haribote OS.");
 	putfonts8_asc(binfo->vram, binfo->scrnx, 30, 30, COL8_FFFFFF, "Haribote OS.");
 
@@ -127,7 +127,7 @@ void putfont8(char *vram, int xsize, int x, int y, char c, char *font)
 	int i;
 	for (i = 0; i < 16; i++) {
 		char *p = vram + xsize * (y + i) + x;
-		d = font[i];
+		char d = font[i];
 		if ((d & 0x80) != 0) p[0] = c;
 		if ((d & 0x40) != 0) p[1] = c;
 		if ((d & 0x20) != 0) p[2] = c;
