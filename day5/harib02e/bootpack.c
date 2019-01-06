@@ -41,11 +41,11 @@ void HariMain(void)
 	init_palette();
 	init_screen(binfo->vram, binfo->scrnx, binfo->scrny);
 	putfont8(binfo->vram, binfo->scrnx,  8, 8, COL8_FFFFFF, hankaku + 'A' * 16);
-	putfont8(binfo->vram, binfo->scrnx, 16, 8, COL8_FFFFFF, hankaku + 'B' * 16);
-	putfont8(binfo->vram, binfo->scrnx, 24, 8, COL8_FFFFFF, hankaku + 'C' * 16);
-	putfont8(binfo->vram, binfo->scrnx, 40, 8, COL8_FFFFFF, hankaku + '1' * 16);
-	putfont8(binfo->vram, binfo->scrnx, 48, 8, COL8_FFFFFF, hankaku + '2' * 16);
-	putfont8(binfo->vram, binfo->scrnx, 56, 8, COL8_FFFFFF, hankaku + '3' * 16);
+	putfont8(binfo->vram, binfo->scrnx, 16, 8, COL8_FFFFFF, hankaku + 'N' * 16);
+	putfont8(binfo->vram, binfo->scrnx, 24, 8, COL8_FFFFFF, hankaku + 'G' * 16);
+	putfont8(binfo->vram, binfo->scrnx, 32, 8, COL8_FFFFFF, hankaku + 'E' * 16);
+	putfont8(binfo->vram, binfo->scrnx, 40, 8, COL8_FFFFFF, hankaku + 'L' * 16);
+	putfont8(binfo->vram, binfo->scrnx, 48, 8, COL8_FFFFFF, hankaku + 'A' * 16);
 
 	for (;;) {
 		io_hlt();
