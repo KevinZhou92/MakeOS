@@ -12,7 +12,7 @@ void boxfill8(unsigned char *vram, int xsize, unsigned char c, int x0, int y0, i
 void init_screen8(char *vram, int x, int y);
 void putfont8(char *vram, int xsize, int x, int y, char c, char *font);
 void putfonts8_asc(char *vram, int xsize, int x, int y, char c, unsigned char *s);
-void init_mouse_cursor8(char *mouse, char bc);
+void init_mouse_cursor8(char *mouse, char sc, char bc);
 void putblock8_8(char *vram, int vxsize, int pxsize,
 	int pysize, int px0, int py0, char *buf, int bxsize);
 
@@ -49,7 +49,7 @@ void HariMain(void)
 	init_screen8(binfo->vram, binfo->scrnx, binfo->scrny);
 	mx = (binfo->scrnx - 16) / 2; /* 画面中央になるように座標計算 */
 	my = (binfo->scrny - 28 - 16) / 2;
-	init_mouse_cursor8(mcursor, COL8_008484);
+	init_mouse_cursor8(mcursor, COL8_FF0000, COL8_008484);
 	putblock8_8(binfo->vram, binfo->scrnx, 16, 16, mx, my, mcursor, 16);
 	sprintf(s, "(%d, %d)", mx, my);
 	putfonts8_asc(binfo->vram, binfo->scrnx, 0, 0, COL8_FFFFFF, s);
@@ -161,7 +161,7 @@ void putfonts8_asc(char *vram, int xsize, int x, int y, char c, unsigned char *s
 	return;
 }
 
-void init_mouse_cursor8(char *mouse, char bc)
+void init_mouse_cursor8(char *mouse, char sc, char bc)
 /* マウスカーソルを準備（16x16） */
 {
 	static char cursor[16][16] = {
@@ -190,7 +190,7 @@ void init_mouse_cursor8(char *mouse, char bc)
 				mouse[y * 16 + x] = COL8_000000;
 			}
 			if (cursor[y][x] == 'O') {
-				mouse[y * 16 + x] = COL8_FFFFFF;
+				mouse[y * 16 + x] = sc;
 			}
 			if (cursor[y][x] == '.') {
 				mouse[y * 16 + x] = bc;
