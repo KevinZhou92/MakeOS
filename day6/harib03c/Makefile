@@ -1,5 +1,5 @@
 TOOLPATH = ../../tolsetOSX/z_tools
-INCPATH  = ../../tolsetOSX/z_tools/haribote/
+INCPATH  = ../../tolsetOSX/z_tools/haribote
 OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj
 
 
