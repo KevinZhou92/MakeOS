@@ -23,7 +23,7 @@ void HariMain(void)
 	putfonts8_asc(binfo->vram, binfo->scrnx, 0, 0, COL8_FFFFFF, s);
 
 	io_out8(PIC0_IMR, 0xf9); /* PIC1とキーボードを許可(11111001) */
-	io_out8(PIC1_IMR, 0xef); /* マウスを許可(11101111) */
+	io_out8(PIC1_IMR, 0x0f); /* マウスを許可(11101111) */
 
 	for (;;) {
 		io_hlt();
