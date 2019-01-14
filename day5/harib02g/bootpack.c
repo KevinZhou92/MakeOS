@@ -39,7 +39,7 @@ struct BOOTINFO {
 void HariMain(void)
 {
 	struct BOOTINFO *binfo = (struct BOOTINFO *) 0x0ff0;
-	char s[40];
+	char [40];
 
 	init_palette();
 	init_screen(binfo->vram, binfo->scrnx, binfo->scrny);
