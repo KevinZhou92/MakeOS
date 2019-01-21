@@ -1,6 +1,7 @@
+OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj int.obj fifo.obj
+
 TOOLPATH = ../../tolsetOSX/z_tools
 INCPATH  = ../../tolsetOSX/z_tools/haribote
-OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj int.obj fifo.obj
 
 MAKE     = make -r
 NASK     = $(TOOLPATH)/nask
