@@ -1,5 +1,5 @@
 OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj \
-		int.obj fifo.obj keyboard.obj mouse.obj memory.obj sheet.obj time.obj
+		int.obj fifo.obj keyboard.obj mouse.obj memory.obj sheet.obj timer.obj
 
 TOOLPATH = ../../tolsetOSX/z_tools
 INCPATH  = ../../tolsetOSX/z_tools/haribote
