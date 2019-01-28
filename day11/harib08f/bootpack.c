@@ -65,7 +65,6 @@ void HariMain(void)
 		sprintf(s, "%010d", count);
 		boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
 		putfonts8_asc(buf_win, 160, 40, 28, COL8_000000, s);
-		sheet_refresh(sht_win, 40, 28, 120, 44);
 
 		io_cli();
 		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) == 0) {
@@ -78,6 +77,7 @@ void HariMain(void)
 				boxfill8(buf_back, binfo->scrnx, COL8_008484,  0, 16, 15, 31);
 				putfonts8_asc(buf_back, binfo->scrnx, 0, 16, COL8_FFFFFF, s);
 				sheet_refresh(sht_back, 0, 16, 16, 32);
+		sheet_refresh(sht_win, 40, 28, 120, 44);
 			} else if (fifo8_status(&mousefifo) != 0) {
 				i = fifo8_get(&mousefifo);
 				io_sti();
@@ -116,6 +116,7 @@ void HariMain(void)
 					putfonts8_asc(buf_back, binfo->scrnx, 0, 0, COL8_FFFFFF, s); /* À•W‘‚­ */
 					sheet_refresh(sht_back, 0, 0, 80, 16);
 					sheet_slide(sht_mouse, mx, my);
+		sheet_refresh(sht_win, 40, 28, 120, 44);
 				}
 			}
 		}
