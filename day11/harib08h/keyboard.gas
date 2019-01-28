@@ -1,0 +1,57 @@
+	.file	"keyboard.c"
+	.text
+	.balign 2
+.globl _inthandler21
+	.def	_inthandler21;	.scl	2;	.type	32;	.endef
+_inthandler21:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	$97
+	pushl	$32
+	call	_io_out8
+	pushl	$96
+	call	_io_in8
+	movzbl	%al, %eax
+	pushl	%eax
+	pushl	$_keyfifo
+	call	_fifo8_put
+	leave
+	ret
+	.balign 2
+.globl _wait_KBC_sendready
+	.def	_wait_KBC_sendready;	.scl	2;	.type	32;	.endef
+_wait_KBC_sendready:
+	pushl	%ebp
+	movl	%esp, %ebp
+L3:
+	pushl	$100
+	call	_io_in8
+	popl	%edx
+	andl	$2, %eax
+	jne	L3
+	leave
+	ret
+	.balign 2
+.globl _init_keyboard
+	.def	_init_keyboard;	.scl	2;	.type	32;	.endef
+_init_keyboard:
+	pushl	%ebp
+	movl	%esp, %ebp
+	call	_wait_KBC_sendready
+	pushl	$96
+	pushl	$100
+	call	_io_out8
+	call	_wait_KBC_sendready
+	pushl	$71
+	pushl	$96
+	call	_io_out8
+	leave
+	ret
+.globl _keyfifo
+	.data
+	.balign 16
+_keyfifo:
+	.space 24
+	.def	_fifo8_put;	.scl	2;	.type	32;	.endef
+	.def	_io_in8;	.scl	2;	.type	32;	.endef
+	.def	_io_out8;	.scl	2;	.type	32;	.endef
