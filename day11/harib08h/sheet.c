@@ -64,7 +64,7 @@ void sheet_refreshmap(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1, in
 	if (vy1 > ctl->ysize) { vy1 = ctl->ysize; }
 	for (h = h0; h <= ctl->top; h++) {
 		sht = ctl->sheets[h];
-		sid = sht - ctl->sheets0; /* ”Ô’n‚ðˆø‚«ŽZ‚µ‚Ä‚»‚ê‚ð‰º‚¶‚«”Ô†‚Æ‚µ‚Ä—˜—p */
+		sid = sht - &ctl->sheets; /* ”Ô’n‚ðˆø‚«ŽZ‚µ‚Ä‚»‚ê‚ð‰º‚¶‚«”Ô†‚Æ‚µ‚Ä—˜—p */
 		buf = sht->buf;
 		bx0 = vx0 - sht->vx0;
 		by0 = vy0 - sht->vy0;
