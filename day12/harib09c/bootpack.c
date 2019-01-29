@@ -124,8 +124,8 @@ void HariMain(void)
 			} else if (fifo8_status(&timerfifo) != 0) {
 				i = fifo8_get(&timerfifo); /* ‚Æ‚è‚ ‚¦‚¸“Ç‚Ýž‚Þi‚©‚ç‚É‚·‚é‚½‚ß‚Éj */
 				io_sti();
-
-				putfonts8_asc(buf_back, binfo->scrnx, 0, 64, COL8_FFFFFF, "10[sec]");
+				time += 10;
+				putfonts8_asc(buf_back, binfo->scrnx, 0, 64, COL8_FFFFFF, time + "[sec]");
 				sheet_refresh(sht_back, 0, 64, 56, 80);
 			}
 		}
