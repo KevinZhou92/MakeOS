@@ -64,7 +64,7 @@ void HariMain(void)
 			memtotal / (1024 * 1024), memman_total(memman) / 1024);
 	putfonts8_asc(buf_back, binfo->scrnx, 0, 32, COL8_FFFFFF, s);
 	sheet_refresh(sht_back, 0, 0, binfo->scrnx, 48);
-
+	int time = 10; 
 	for (;;) {
 		sprintf(s, "%010d", timerctl.count);
 		boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
@@ -124,6 +124,7 @@ void HariMain(void)
 			} else if (fifo8_status(&timerfifo) != 0) {
 				i = fifo8_get(&timerfifo); /* ‚Æ‚è‚ ‚¦‚¸“Ç‚Ýž‚Þi‚©‚ç‚É‚·‚é‚½‚ß‚Éj */
 				io_sti();
+				
 				putfonts8_asc(buf_back, binfo->scrnx, 0, 64, COL8_FFFFFF, "10[sec]");
 				sheet_refresh(sht_back, 0, 64, 56, 80);
 			}
