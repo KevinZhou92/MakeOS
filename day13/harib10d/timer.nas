@@ -1,0 +1,127 @@
+[FORMAT "WCOFF"]
+[INSTRSET "i486p"]
+[OPTIMIZE 1]
+[OPTION 1]
+[BITS 32]
+	EXTERN	_io_out8
+	EXTERN	_fifo8_put
+[FILE "timer.c"]
+[SECTION .text]
+	GLOBAL	_init_pit
+_init_pit:
+	PUSH	EBP
+	MOV	EBP,ESP
+	PUSH	52
+	PUSH	67
+	CALL	_io_out8
+	PUSH	156
+	PUSH	64
+	CALL	_io_out8
+	PUSH	46
+	PUSH	64
+	CALL	_io_out8
+	MOV	EDX,_timerctl+7992
+	MOV	DWORD [_timerctl],0
+	ADD	ESP,24
+	MOV	EAX,_timerctl+8
+L6:
+	MOV	DWORD [EAX],0
+	ADD	EAX,16
+	CMP	EAX,EDX
+	JLE	L6
+	LEAVE
+	RET
+	GLOBAL	_timer_alloc
+_timer_alloc:
+	PUSH	EBP
+	XOR	EDX,EDX
+	MOV	EBP,ESP
+	MOV	EAX,_timerctl+4
+L15:
+	CMP	DWORD [4+EAX],0
+	JE	L18
+	INC	EDX
+	ADD	EAX,16
+	CMP	EDX,499
+	JLE	L15
+	XOR	EAX,EAX
+L9:
+	POP	EBP
+	RET
+L18:
+	MOV	DWORD [4+EAX],1
+	JMP	L9
+	GLOBAL	_timer_free
+_timer_free:
+	PUSH	EBP
+	MOV	EBP,ESP
+	MOV	EAX,DWORD [8+EBP]
+	MOV	DWORD [4+EAX],0
+	POP	EBP
+	RET
+	GLOBAL	_timer_init
+_timer_init:
+	PUSH	EBP
+	MOV	EBP,ESP
+	MOV	EAX,DWORD [8+EBP]
+	MOV	EDX,DWORD [12+EBP]
+	MOV	DWORD [8+EAX],EDX
+	MOV	EDX,DWORD [16+EBP]
+	MOV	BYTE [12+EAX],DL
+	POP	EBP
+	RET
+	GLOBAL	_timer_settime
+_timer_settime:
+	PUSH	EBP
+	MOV	EBP,ESP
+	MOV	EDX,DWORD [8+EBP]
+	MOV	EAX,DWORD [12+EBP]
+	MOV	DWORD [EDX],EAX
+	MOV	DWORD [4+EDX],2
+	POP	EBP
+	RET
+	GLOBAL	_inthandler20
+_inthandler20:
+	PUSH	EBP
+	MOV	EBP,ESP
+	PUSH	ESI
+	PUSH	EBX
+	MOV	ESI,499
+	PUSH	96
+	PUSH	32
+	CALL	_io_out8
+	POP	ECX
+	POP	EBX
+	INC	DWORD [_timerctl]
+	XOR	EBX,EBX
+L29:
+	CMP	DWORD [_timerctl+8+EBX],2
+	JE	L32
+L25:
+	ADD	EBX,16
+	DEC	ESI
+	JNS	L29
+	LEA	ESP,DWORD [-8+EBP]
+	POP	EBX
+	POP	ESI
+	POP	EBP
+	RET
+L32:
+	MOV	EAX,DWORD [_timerctl+4+EBX]
+	DEC	EAX
+	MOV	DWORD [_timerctl+4+EBX],EAX
+	TEST	EAX,EAX
+	JNE	L25
+	MOVZX	EAX,BYTE [_timerctl+16+EBX]
+	PUSH	EAX
+	PUSH	DWORD [_timerctl+12+EBX]
+	MOV	DWORD [_timerctl+8+EBX],1
+	CALL	_fifo8_put
+	POP	EAX
+	POP	EDX
+	JMP	L25
+	GLOBAL	_timerctl
+[SECTION .data]
+	ALIGNB	16
+_timerctl:
+	RESB	8004
