@@ -76,7 +76,7 @@ void HariMain(void)
 
 	for (;;) {
 		count++;
-		sprintf(s, "counting");
+		sprintf(s, "counting %d", count);
 		putfonts8_asc_sht(sht_back, 0, 16, COL8_FFFFFF, COL8_008484, s, 8);
 
 		io_cli();
