@@ -76,8 +76,8 @@ void HariMain(void)
 
 	for (;;) {
 		count++;
-		// sprintf(s, "counting %d", count);
-		// putfonts8_asc_sht(sht_back, 0, 16, COL8_FFFFFF, COL8_008484, s, 20);
+		sprintf(s, "counting %d", count);
+		putfonts8_asc_sht(sht_back, 0, 50, COL8_FFFFFF, COL8_008484, s, 20);
 
 		io_cli();
 		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo) == 0) {
