@@ -3,7 +3,7 @@
 
 [INSTRSET "i486p"]
 
-VBEMODE	EQU		0x105			; 1024 x  768 x 8bitカラー
+VBEMODE	EQU		0x107			; 1024 x  768 x 8bitカラー
 ; （画面モード一覧）
 ;	0x100 :  640 x  400 x 8bitカラー
 ;	0x101 :  640 x  480 x 8bitカラー
