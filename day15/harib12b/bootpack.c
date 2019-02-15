@@ -298,6 +298,7 @@ void task_b_main(void)
 			i = fifo32_get(&fifo);
 			io_sti();
 			if (i == 1) { /* 5秒タイムアウト */
+				putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484, "switching", 9);
 				taskswitch3(); /* タスクAにもどる */
 			}
 		}
