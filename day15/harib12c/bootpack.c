@@ -295,10 +295,9 @@ void task_b_main(void)
 	timer_ts = timer_alloc();
 	timer_init(timer_ts, &fifo, 1);
 	timer_settime(timer_ts, 2);
+	char s[11] = new char[11];
 
 	struct SHEET *sht_back = (struc *SHEET)*((int *) 0x0eec);
-		sprintf(s, "(%3d, %3d)", mx, my);
-					putfonts8_asc_sht(sht_back, 0, 0, COL8_FFFFFF, COL8_008484, s, 10);
 
 	for (;;) {
 		io_cli();
@@ -310,6 +309,8 @@ void task_b_main(void)
 			io_sti();
 			if (i == 1) { /* タスクスイッチ */
 				farjmp(0, 3 * 8);
+				sprintf(s, "(%3d, %3d)", mx, my);
+					putfonts8_asc_sht(sht_back, 0, 0, COL8_FFFFFF, COL8_008484, s, 10);
 				timer_settime(timer_ts, 2);
 			}
 		}
