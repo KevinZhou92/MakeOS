@@ -30,6 +30,7 @@ void HariMain(void)
 	struct SHTCTL *shtctl;
 	struct SHEET *sht_back, *sht_mouse, *sht_win;
 	*((int *) 0x0eec ) = (int) sht_back;
+
 	unsigned char *buf_back, buf_mouse[256], *buf_win;
 	static char keytable[0x54] = {
 		0,   0,   '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '^', 0,   0,
@@ -294,6 +295,8 @@ void task_b_main(void)
 	timer_ts = timer_alloc();
 	timer_init(timer_ts, &fifo, 1);
 	timer_settime(timer_ts, 2);
+
+	struct SHEET *sht_back = (struc *SHEET)*((int *) 0x0eec
 
 	for (;;) {
 		io_cli();
