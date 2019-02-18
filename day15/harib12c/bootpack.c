@@ -297,7 +297,7 @@ void task_b_main(void)
 	timer_settime(timer_ts, 2);
 	char s[11] = new char[11];
 
-	struct SHEET *sht_back = (struc *SHEET)*((int *) 0x0eec);
+	struct SHEET *sht_back = (struct *SHEET)*((int *) 0x0eec);
 
 	for (;;) {
 		io_cli();
