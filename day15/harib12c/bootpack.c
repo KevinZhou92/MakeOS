@@ -296,7 +296,7 @@ void task_b_main(void)
 	timer_init(timer_ts, &fifo, 1);
 	timer_settime(timer_ts, 2);
 
-	struct SHEET *sht_back = (struc *SHEET)*((int *) 0x0eec;
+	struct SHEET *sht_back = (struc *SHEET)*((int *) 0x0eec);
 		sprintf(s, "(%3d, %3d)", mx, my);
 					putfonts8_asc_sht(sht_back, 0, 0, COL8_FFFFFF, COL8_008484, s, 10);
 
