@@ -1,5 +1,5 @@
-text size :   9258(0x0242A)
-data size :  14860(0x03A0C)
+text size :   9346(0x02482)
+data size :  14868(0x03A14)
 bss  size :      0(0x00000)
 
 0x00000000 : (.text)
@@ -87,14 +87,17 @@ bss  size :      0(0x00000)
 0x00001E79 : _timer_init
 0x00001E8D : _timer_settime
 0x00001EE8 : _inthandler20
+0x00001F68 : _mt_init
 0x00001F68 : (.text)
-0x00001F68 : _HariStartup
-0x00001F71 : _sprintf
-0x00001F71 : (.text)
-0x00001F85 : (.text)
-0x00001FC1 : _strtoul0
-0x00002094 : (.text)
-0x000020BC : _vsprintf
+0x00001F89 : _mt_taskswitch
+0x00001FC0 : (.text)
+0x00001FC0 : _HariStartup
+0x00001FC9 : _sprintf
+0x00001FC9 : (.text)
+0x00001FDD : (.text)
+0x00002019 : _strtoul0
+0x000020EC : (.text)
+0x00002114 : _vsprintf
 0x00000000 : (.data)
 0x00000000 : (.data)
 0x00000000 : (.data)
@@ -116,7 +119,11 @@ bss  size :      0(0x00000)
 0x003112CC : _mousedata0
 0x003112D0 : (.data)
 0x003112D0 : _timerctl
+0x003139EC : _mt_timer
 0x003139EC : (.data)
+0x003139F0 : _mt_tr
+0x003139F4 : (.data)
+0x00000000 : (.bss)
 0x00000000 : (.bss)
 0x00000000 : (.bss)
 0x00000000 : (.bss)
