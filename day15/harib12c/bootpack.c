@@ -303,6 +303,8 @@ void task_b_main(void)
 
 	for (;;) {
 		io_cli();
+		sprintf(s, "%", "switched");
+				putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 10);
 		if (fifo32_status(&fifo) == 0) {
 			io_sti();
 			io_hlt();
@@ -311,8 +313,7 @@ void task_b_main(void)
 			io_sti();
 			if (i == 1) { /* タスクスイッチ */
 				farjmp(0, 3 * 8);
-				sprintf(s, "%", "switched");
-				putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 10);
+				
 				timer_settime(timer_ts, 2);
 			}
 		}
