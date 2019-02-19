@@ -123,7 +123,7 @@ void HariMain(void)
 	tss_b.ds = 1 * 8;
 	tss_b.fs = 1 * 8;
 	tss_b.gs = 1 * 8;
-	*((int *) 0x0fec) =  ht_back;
+	*((int *) 0x0fec) =  *sht_back;
 
 	for (;;) {
 		io_cli();
