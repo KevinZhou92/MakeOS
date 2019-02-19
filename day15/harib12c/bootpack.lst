@@ -249,7 +249,7 @@
    245 00000167 89 C3                           	MOV	EBX,EAX
    246 00000169 50                              	PUSH	EAX
    247 0000016A E8 [00000000]                   	CALL	_sheet_alloc
-   248 0000016F A3 00000EEC                     	MOV	DWORD [3820],EAX
+   248 0000016F A3 00000FEC                     	MOV	DWORD [4076],EAX
    249 00000174 53                              	PUSH	EBX
    250 00000175 89 85 FFFFFB98                  	MOV	DWORD [-1128+EBP],EAX
    251 0000017B E8 [00000000]                   	CALL	_sheet_alloc
@@ -1092,7 +1092,7 @@
   1074 00000B6E 56                              	PUSH	ESI
   1075 00000B6F E8 [00000000]                   	CALL	_timer_settime
   1076 00000B74 83 C4 20                        	ADD	ESP,32
-  1077 00000B77 8B 3D 00000EEC                  	MOV	EDI,DWORD [3820]
+  1077 00000B77 8B 3D 00000FEC                  	MOV	EDI,DWORD [4076]
   1078 00000B7D                                 L70:
   1079 00000B7D 8D 5D D4                        	LEA	EBX,DWORD [-44+EBP]
   1080 00000B80 E8 [00000000]                   	CALL	_io_cli
