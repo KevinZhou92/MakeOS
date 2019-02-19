@@ -299,7 +299,7 @@ void task_b_main(void)
 	char s[11];
 
 
-	struct SHEET *sht_back = (struct SHEET *) *((int *) 0x0eec);
+	struct SHEET *sht_back = (struct SHEET *) *((int *) 0x0fec);
 
 	for (;;) {
 		io_cli();
