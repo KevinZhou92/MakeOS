@@ -300,10 +300,12 @@ void task_b_main(void)
 
 
 	struct SHEET *sht_back = (struct SHEET *) *((int *) 0x0fec);
+	int count = 0;
 
 	for (;;) {
+		count++;
 		io_cli();
-		sprintf(s, "%s", "switched");
+		sprintf(s, "%d", "switched");
 		putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 10);
 		if (fifo32_status(&fifo) == 0) {
 			io_sti();
