@@ -74,7 +74,7 @@ void HariMain(void)
 	init_palette();
 	shtctl = shtctl_init(memman, binfo->vram, binfo->scrnx, binfo->scrny);
 	sht_back  = sheet_alloc(shtctl);
-	*((int *) 0x0eec ) = (int) sht_back;
+	*((int *) 0x0fec ) = (int) sht_back;
 	sht_mouse = sheet_alloc(shtctl);
 	sht_win   = sheet_alloc(shtctl);
 	buf_back  = (unsigned char *) memman_alloc_4k(memman, binfo->scrnx * binfo->scrny);
