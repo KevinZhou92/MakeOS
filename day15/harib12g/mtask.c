@@ -23,5 +23,5 @@ void mt_taskswitch(void)
 	}
 	timer_settime(mt_timer, 2);
 	farjmp(0, mt_tr);
-	return;
+	// return;
 }
