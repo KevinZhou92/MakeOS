@@ -461,7 +461,7 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 						}
 						sheet_refresh(sheet, 8, 28, 8 + 240, 28 + 128);
 						cursor_y = 28;
-					} else if (strcmp(cmdline, "dir") == 0) {
+					} else if (strcmp(cmdline, "ls") == 0) {
 						/* dirƒRƒ}ƒ“ƒh */
 						for (x = 0; x < 224; x++) {
 							if (finfo[x].name[0] == 0x00) {
