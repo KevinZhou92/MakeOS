@@ -444,7 +444,7 @@ void console_task(struct SHEET *sheet, unsigned int memtotal)
 						cursor_y = cons_newline(cursor_y, sheet);
 					} else if (cmdline[0] != 0) {
 						/* コマンドではなく、さらに空行でもない */
-						putfonts8_asc_sht(sheet, 8, cursor_y, COL8_FFFFFF, COL8_000000, "Bad command.", 12);
+						putfonts8_asc_sht(sheet, 8, cursor_y, COL8_FFFFFF, COL8_000000, "Command is not found.", 20);
 						cursor_y = cons_newline(cursor_y, sheet);
 						cursor_y = cons_newline(cursor_y, sheet);
 					}
