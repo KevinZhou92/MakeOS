@@ -135,7 +135,13 @@ void HariMain(void)
 		} else {
 			i = fifo32_get(&fifo);
 			io_sti();
+
+			char temp[2];
 			if (256 <= i && i <= 511) { /* キーボードデータ */
+				temp[0] = i - 256;
+				temp[1] = 0;
+				putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, s, 2);
+
 				if (i < 0x80 + 256) { /* キーコードを文字コードに変換 */
 					if (key_shift == 0) {
 						s[0] = keytable0[i - 256];
@@ -197,7 +203,7 @@ void HariMain(void)
 					sheet_refresh(sht_win,  0, 0, sht_win->bxsize,  21);
 					sheet_refresh(sht_cons, 0, 0, sht_cons->bxsize, 21);
 				}
-				if (i == 256 + 0x2a || i == 256 + 0x1d) {	/* 左シフト ON */
+				if (i == 256 + 0x2a) {	/* 左シフト ON */
 					key_shift |= 1;
 				}
 				if (i == 256 + 0x36) {	/* 右シフト ON */
