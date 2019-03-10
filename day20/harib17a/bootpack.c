@@ -162,7 +162,7 @@ void HariMain(void)
 						if (cursor_x < 128) {
 							/* 一文字表示してから、カーソルを1つ進める */
 							s[1] = 0;
-							putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, s, 1);
+							putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, temp, 1);
 							cursor_x += 8;
 						}
 					} else {	/* コンソールへ */
