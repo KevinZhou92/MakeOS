@@ -209,11 +209,17 @@ void HariMain(void)
 				if (i == 256 + 0x36) {	/* 右シフト ON */
 					key_shift |= 2;
 				}
+				if (i == 256 + 0x1D) {	/* Left Ctrl ON */
+					key_shift |= 4;
+				}
 				if (i == 256 + 0xaa) {	/* 左シフト OFF */
 					key_shift &= ~1;
 				}
 				if (i == 256 + 0xb6) {	/* 右シフト OFF */
 					key_shift &= ~2;
+				}
+				if (i == 256 + 0x9D) {	/* Left Ctrl ON */
+					key_shift &= ~4;
 				}
 				if (i == 256 + 0x3a) {	/* CapsLock */
 					key_leds ^= 4;
