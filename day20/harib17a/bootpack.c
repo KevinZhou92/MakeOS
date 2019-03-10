@@ -138,9 +138,8 @@ void HariMain(void)
 
 			char temp[2];
 			if (256 <= i && i <= 511) { /* キーボードデータ */
-				temp[0] = i - 256;
-				temp[1] = 0;
-				putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, temp, 1);
+				sprintf(temp, "02X", i - 256);
+				putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, temp, 2);
 
 				if (i < 0x80 + 256) { /* キーコードを文字コードに変換 */
 					if (key_shift == 0) {
@@ -162,7 +161,7 @@ void HariMain(void)
 						if (cursor_x < 128) {
 							/* 一文字表示してから、カーソルを1つ進める */
 							s[1] = 0;
-							putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, temp, 1);
+							putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, s, 1);
 							cursor_x += 8;
 						}
 					} else {	/* コンソールへ */
