@@ -134,7 +134,7 @@ void HariMain(void)
 			io_sti();
 		} else {
 			i = fifo32_get(&fifo);
-			char s[] = char[2];
+			char s[2];
 			sprintf(s, "%02X", i-256);
 			putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, s, 2);
 			io_sti();
