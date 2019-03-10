@@ -200,7 +200,7 @@ void HariMain(void)
 					sheet_refresh(sht_win,  0, 0, sht_win->bxsize,  21);
 					sheet_refresh(sht_cons, 0, 0, sht_cons->bxsize, 21);
 				}
-				if (i == 256 + 0x2a) {	/* 左シフト ON */
+				if (i == 256 + 0x2a || i == 256 + 0x0d) {	/* 左シフト ON */
 					key_shift |= 1;
 				}
 				if (i == 256 + 0x36) {	/* 右シフト ON */
