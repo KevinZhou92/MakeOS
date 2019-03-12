@@ -2,24 +2,22 @@ OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj \
 		int.obj fifo.obj keyboard.obj mouse.obj memory.obj sheet.obj timer.obj \
 		mtask.obj window.obj console.obj file.obj
 
-TOOLPATH = ../z_tools/
-INCPATH  = ../z_tools/haribote/
 
-MAKE     = $(TOOLPATH)make.exe -r
-NASK     = $(TOOLPATH)nask.exe
-CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -Os -Wall -quiet
-GAS2NASK = $(TOOLPATH)gas2nask.exe -a
-OBJ2BIM  = $(TOOLPATH)obj2bim.exe
-MAKEFONT = $(TOOLPATH)makefont.exe
-BIN2OBJ  = $(TOOLPATH)bin2obj.exe
-BIM2HRB  = $(TOOLPATH)bim2hrb.exe
-RULEFILE = $(TOOLPATH)haribote/haribote.rul
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-COPY     = copy
-DEL      = del
-
-# デフォルト動作
+TOOLPATH = ../../tolsetOSX/z_tools
+INCPATH  = ../../tolsetOSX/z_tools/haribote
+MAKE     = make -r
+NASK     = $(TOOLPATH)/nask
+CC1      = $(TOOLPATH)/gocc1 -I$(INCPATH)/ -Os -Wall -quiet
+GAS2NASK = $(TOOLPATH)/gas2nask -a
+MAKEFONT = $(TOOLPATH)/makefont
+OBJ2BIM  = $(TOOLPATH)/obj2bim
+BIN2OBJ  = $(TOOLPATH)/bin2obj
+BIM2HRB  = $(TOOLPATH)/bim2hrb
+RULEFILE = $(TOOLPATH)/haribote/haribote.rul
+EDIMG    = $(TOOLPATH)/edimg
+IMGTOL   = $(TOOLPATH)/imgtol
+COPY     = cp
+DEL      = rm
 
 default :
 	$(MAKE) img
@@ -46,17 +44,14 @@ bootpack.bim : $(OBJS_BOOTPACK) Makefile
 bootpack.hrb : bootpack.bim Makefile
 	$(BIM2HRB) bootpack.bim bootpack.hrb 0
 
-hello.hrb : hello.nas Makefile
-	$(NASK) hello.nas hello.hrb hello.lst
-
-hello2.hrb : hello2.nas Makefile
-	$(NASK) hello2.nas hello2.hrb hello2.lst
+%.hrb : %.nas Makefile
+	$(NASK) $*.nas $*.hrb $*.lst
 
 haribote.sys : asmhead.bin bootpack.hrb Makefile
-	copy /B asmhead.bin+bootpack.hrb haribote.sys
+	cat asmhead.bin bootpack.hrb > haribote.sys	
 
 haribote.img : ipl10.bin haribote.sys hello.hrb hello2.hrb Makefile
-	$(EDIMG)   imgin:../z_tools/fdimg0at.tek \
+	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote.sys to:@: \
 		copy from:ipl10.nas to:@: \
@@ -83,8 +78,8 @@ img :
 
 run :
 	$(MAKE) img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install :
 	$(MAKE) img
@@ -102,4 +97,3 @@ clean :
 src_only :
 	$(MAKE) clean
 	-$(DEL) haribote.img
-	-$(DEL) *.hrb
