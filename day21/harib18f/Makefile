@@ -67,14 +67,15 @@ hello3.bim : hello3.obj a_nask.obj Makefile
 hello3.hrb : hello3.bim Makefile
 	$(BIM2HRB) hello3.bim hello3.hrb 0
 
-crack1.bim : crack1.obj Makefile
-	$(OBJ2BIM) @$(RULEFILE) out:crack1.bim map:crack1.map crack1.obj
+%.bim : %.obj Makefile
+	$(OBJ2BIM) @$(RULEFILE) out:$*.bim map:$*.map $*.obj
 
-crack1.hrb : crack1.bim Makefile
-	$(BIM2HRB) crack1.bim crack1.hrb 0
+%.hrb : %.bim Makefile
+	$(BIM2HRB) $*.bim $*.hrb 0
 
 haribote.img : ipl10.bin haribote.sys Makefile \
-		hello.hrb hello2.hrb a.hrb hello3.hrb crack1.hrb
+		hello.hrb hello2.hrb a.hrb hello3.hrb crack1.hrb \
+		crack2.hrb
 	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote.sys to:@: \
@@ -85,6 +86,7 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:a.hrb to:@: \
 		copy from:hello3.hrb to:@: \
 		copy from:crack1.hrb to:@: \
+		copy from:crack2.hrb to:@: \
 		imgout:haribote.img
 
 # ˆê”Ê‹K‘¥
