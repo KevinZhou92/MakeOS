@@ -88,6 +88,7 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:a.hrb to:@: \
 		copy from:hello3.hrb to:@: \
 		copy from:crack1.hrb to:@: \
+		copy from:crack2.hrb to:@: \
 		imgout:haribote.img
 
 # ˆê”Ê‹K‘¥
