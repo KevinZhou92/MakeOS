@@ -1,0 +1,14 @@
+[FORMAT "WCOFF"]
+[INSTRSET "i486p"]
+[OPTIMIZE 1]
+[OPTION 1]
+[BITS 32]
+[FILE "crack1.c"]
+[SECTION .text]
+	GLOBAL	_HariMain
+_HariMain:
+	PUSH	EBP
+	MOV	BYTE [1058304],0
+	MOV	EBP,ESP
+	POP	EBP
+	RET
