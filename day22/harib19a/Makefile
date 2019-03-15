@@ -2,22 +2,22 @@ OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj \
 		int.obj fifo.obj keyboard.obj mouse.obj memory.obj sheet.obj timer.obj \
 		mtask.obj window.obj console.obj file.obj
 
-TOOLPATH = ../z_tools/
-INCPATH  = ../z_tools/haribote/
+TOOLPATH = ../../tolsetOSX/z_tools
+INCPATH  = ../../tolsetOSX/z_tools/haribote
 
-MAKE     = $(TOOLPATH)make.exe -r
-NASK     = $(TOOLPATH)nask.exe
-CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -Os -Wall -quiet
-GAS2NASK = $(TOOLPATH)gas2nask.exe -a
-OBJ2BIM  = $(TOOLPATH)obj2bim.exe
-MAKEFONT = $(TOOLPATH)makefont.exe
-BIN2OBJ  = $(TOOLPATH)bin2obj.exe
-BIM2HRB  = $(TOOLPATH)bim2hrb.exe
-RULEFILE = $(TOOLPATH)haribote/haribote.rul
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-COPY     = copy
-DEL      = del
+MAKE     = make -r
+NASK     = $(TOOLPATH)/nask
+CC1      = $(TOOLPATH)/gocc1 -I$(INCPATH)/ -Os -Wall -quiet
+GAS2NASK = $(TOOLPATH)/gas2nask -a
+MAKEFONT = $(TOOLPATH)/makefont
+OBJ2BIM  = $(TOOLPATH)/obj2bim
+BIN2OBJ  = $(TOOLPATH)/bin2obj
+BIM2HRB  = $(TOOLPATH)/bim2hrb
+RULEFILE = $(TOOLPATH)/haribote/haribote.rul
+EDIMG    = $(TOOLPATH)/edimg
+IMGTOL   = $(TOOLPATH)/imgtol
+COPY     = cp
+DEL      = rm
 
 # デフォルト動作
 
@@ -47,8 +47,8 @@ bootpack.hrb : bootpack.bim Makefile
 	$(BIM2HRB) bootpack.bim bootpack.hrb 0
 
 haribote.sys : asmhead.bin bootpack.hrb Makefile
-	copy /B asmhead.bin+bootpack.hrb haribote.sys
-
+	cat asmhead.bin bootpack.hrb > haribote.sys
+	
 hello.hrb : hello.nas Makefile
 	$(NASK) hello.nas hello.hrb hello.lst
 
@@ -70,28 +70,16 @@ hello3.hrb : hello3.bim Makefile
 crack1.bim : crack1.obj Makefile
 	$(OBJ2BIM) @$(RULEFILE) out:crack1.bim map:crack1.map crack1.obj a_nask.obj
 
+
 crack1.hrb : crack1.bim Makefile
 	$(BIM2HRB) crack1.bim crack1.hrb 0
 
 crack2.hrb : crack2.nas Makefile
-	$(NASK) crack2.nas crack2.hrb crack2.lst
-
-crack3.hrb : crack3.nas Makefile
-	$(NASK) crack3.nas crack3.hrb crack3.lst
-
-crack4.hrb : crack4.nas Makefile
-	$(NASK) crack4.nas crack4.hrb crack4.lst
-
-crack5.hrb : crack5.nas Makefile
-	$(NASK) crack5.nas crack5.hrb crack5.lst
-
-crack6.hrb : crack6.nas Makefile
-	$(NASK) crack6.nas crack6.hrb crack6.lst
+	$(NASK) crack2.nas crack2.hrb crack2.lst	
 
 haribote.img : ipl10.bin haribote.sys Makefile \
-		hello.hrb hello2.hrb a.hrb hello3.hrb crack1.hrb crack2.hrb crack3.hrb \
-		crack4.hrb crack5.hrb crack6.hrb
-	$(EDIMG)   imgin:../z_tools/fdimg0at.tek \
+		hello.hrb hello2.hrb a.hrb hello3.hrb crack1.hrb crack2.hrb
+	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote.sys to:@: \
 		copy from:ipl10.nas to:@: \
@@ -102,10 +90,6 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:hello3.hrb to:@: \
 		copy from:crack1.hrb to:@: \
 		copy from:crack2.hrb to:@: \
-		copy from:crack3.hrb to:@: \
-		copy from:crack4.hrb to:@: \
-		copy from:crack5.hrb to:@: \
-		copy from:crack6.hrb to:@: \
 		imgout:haribote.img
 
 # 一般規則
@@ -126,8 +110,8 @@ img :
 
 run :
 	$(MAKE) img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install :
 	$(MAKE) img
