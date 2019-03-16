@@ -141,6 +141,7 @@ void HariMain(void)
 				if (i < 0x80 + 256) { /* キーコードを文字コードに変換 */
 					if (key_shift == 0) {
 						s[0] = keytable0[i - 256];
+						temp[0] = keytable0[i - 256];
 					} else {
 						s[0] = keytable1[i - 256];
 					}
