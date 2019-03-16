@@ -144,6 +144,7 @@ void HariMain(void)
 					} else {
 						s[0] = keytable1[i - 256];
 					}
+					sprintf(temp, "%02X", 2)
 				} else {
 					s[0] = 0;
 				}
