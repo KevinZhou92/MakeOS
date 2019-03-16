@@ -333,6 +333,8 @@ int *inthandler0c(int *esp)
 	cons_putstr0(cons, "\nINT 0C :\n Stack Exception.\n");
 	sprintf(s, "EIP = %08X\n", esp[11]);
 	cons_putstr0(cons, s);
+	sprintf(s, "EFLAGS = %08X\n", esp[13]);
+	cons_putstr0(cons, s);
 	return &(task->tss.esp0);	/* ˆÙíI—¹‚³‚¹‚é */
 }
 
