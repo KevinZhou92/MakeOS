@@ -144,7 +144,7 @@ void HariMain(void)
 					} else {
 						s[0] = keytable1[i - 256];
 					}
-					sprintf(temp, "%02X", i)
+					sprintf(temp, "%02X", i);
 					putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, temp, 2);
 					cursor_x +=16;
 				} else {
