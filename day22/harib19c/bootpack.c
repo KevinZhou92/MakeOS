@@ -204,11 +204,17 @@ void HariMain(void)
 				if (i == 256 + 0x36) {	/* 右シフト ON */
 					key_shift |= 2;
 				}
+				if (i == 256 + 0x1D) {	/* 右シフト ON */
+					key_shift |= 4;
+				}
 				if (i == 256 + 0xaa) {	/* 左シフト OFF */
 					key_shift &= ~1;
 				}
 				if (i == 256 + 0xb6) {	/* 右シフト OFF */
 					key_shift &= ~2;
+				}
+				if (i == 256 + 0x9D) {	/* 右シフト ON */
+					key_shift &= ~4;
 				}
 				if (i == 256 + 0x3a) {	/* CapsLock */
 					key_leds ^= 4;
@@ -225,7 +231,7 @@ void HariMain(void)
 					fifo32_put(&keycmd, KEYCMD_LED);
 					fifo32_put(&keycmd, key_leds);
 				}
-				if (i == 256 + 0x3b && key_shift != 0 && task_cons->tss.ss0 != 0) {	/* Shift+F1 */
+				if (i == 256 + 99 && key_shift != 0 && task_cons->tss.ss0 != 0) {	/* Shift+F1 */
 					cons = (struct CONSOLE *) *((int *) 0x0fec);
 					cons_putstr0(cons, "\nBreak(key) :\n");
 					io_cli();	/* 強制終了処理中にタスクが変わると困るから */
