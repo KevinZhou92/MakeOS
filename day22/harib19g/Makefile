@@ -47,8 +47,8 @@ bootpack.hrb : bootpack.bim Makefile
 	$(BIM2HRB) bootpack.bim bootpack.hrb 0
 
 haribote.sys : asmhead.bin bootpack.hrb Makefile
-	cat asmhead.bin bootpack.hrb > haribote.sys
-	
+	copy /B asmhead.bin+bootpack.hrb haribote.sys
+
 hello.hrb : hello.nas Makefile
 	$(NASK) hello.nas hello.hrb hello.lst
 
@@ -87,23 +87,12 @@ winhelo.bim : winhelo.obj a_nask.obj Makefile
 winhelo.hrb : winhelo.bim Makefile
 	$(BIM2HRB) winhelo.bim winhelo.hrb 0
 
-bug1.bim : bug1.obj Makefile
-	$(OBJ2BIM) @$(RULEFILE) out:bug1.bim map:bug1.map bug1.obj a_nask.obj
+winhelo2.bim : winhelo2.obj a_nask.obj Makefile
+	$(OBJ2BIM) @$(RULEFILE) out:winhelo2.bim stack:1k map:winhelo2.map \
+		winhelo2.obj a_nask.obj
 
-bug1.hrb : bug1.bim Makefile
-	$(BIM2HRB) bug1.bim bug1.hrb 0
-
-bug2.bim : bug2.obj Makefile
-	$(OBJ2BIM) @$(RULEFILE) out:bug2.bim map:bug2.map bug2.obj
-
-bug2.hrb : bug2.bim Makefile
-	$(BIM2HRB) bug2.bim bug2.hrb 0
-
-bug3.bim : bug3.obj Makefile
-	$(OBJ2BIM) @$(RULEFILE) out:bug3.bim map:bug3.map bug3.obj a_nask.obj
-
-bug3.hrb : bug3.bim Makefile
-	$(BIM2HRB) bug3.bim bug3.hrb 0
+winhelo2.hrb : winhelo2.bim Makefile
+	$(BIM2HRB) winhelo2.bim winhelo2.hrb 0
 
 haribote.img : ipl10.bin haribote.sys Makefile \
 		hello.hrb hello2.hrb a.hrb hello3.hrb bug1.hrb bug2.hrb bug3.hrb \
@@ -117,12 +106,10 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:hello2.hrb to:@: \
 		copy from:a.hrb to:@: \
 		copy from:hello3.hrb to:@: \
-		copy from:bug1.hrb to:@: \
-		copy from:bug2.hrb to:@: \
-		copy from:bug3.hrb to:@: \
 		copy from:hello4.hrb to:@: \
 		copy from:hello5.hrb to:@: \
 		copy from:winhelo.hrb to:@: \
+		copy from:winhelo2.hrb to:@: \
 		imgout:haribote.img
 
 # ˆê”Ê‹K‘¥
