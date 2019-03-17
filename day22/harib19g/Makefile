@@ -95,8 +95,8 @@ winhelo2.hrb : winhelo2.bim Makefile
 	$(BIM2HRB) winhelo2.bim winhelo2.hrb 0
 
 haribote.img : ipl10.bin haribote.sys Makefile \
-		hello.hrb hello2.hrb a.hrb hello3.hrb bug1.hrb bug2.hrb bug3.hrb \
-		hello4.hrb hello5.hrb winhelo.hrb
+		hello.hrb hello2.hrb a.hrb hello3.hrb hello4.hrb hello5.hrb \
+		winhelo.hrb winhelo2.hrb
 	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote.sys to:@: \
