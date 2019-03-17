@@ -213,7 +213,9 @@ void HariMain(void)
 				if (i == 256 + 0xb6) {	/* 右シフト OFF */
 					key_shift &= ~2;
 				}
-				
+				if (i == 256 + 0x9D) {	/* 右シフト ON */
+					key_shift &= ~4;
+				}
 				if (i == 256 + 0x3a) {	/* CapsLock */
 					key_leds ^= 4;
 					fifo32_put(&keycmd, KEYCMD_LED);
