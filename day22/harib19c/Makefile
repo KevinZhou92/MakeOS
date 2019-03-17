@@ -73,6 +73,18 @@ bug1.bim : bug1.obj Makefile
 bug1.hrb : bug1.bim Makefile
 	$(BIM2HRB) bug1.bim bug1.hrb 0
 
+bug2.bim : bug2.obj Makefile
+	$(OBJ2BIM) @$(RULEFILE) out:bug2.bim map:bug2.map bug2.obj
+
+bug2.hrb : bug2.bim Makefile
+	$(BIM2HRB) bug2.bim bug2.hrb 0
+
+bug3.bim : bug3.obj Makefile
+	$(OBJ2BIM) @$(RULEFILE) out:bug3.bim map:bug3.map bug3.obj a_nask.obj
+
+bug3.hrb : bug3.bim Makefile
+	$(BIM2HRB) bug3.bim bug3.hrb 0
+
 haribote.img : ipl10.bin haribote.sys Makefile \
 		hello.hrb hello2.hrb a.hrb hello3.hrb bug1.hrb 
 	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
@@ -85,6 +97,8 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:a.hrb to:@: \
 		copy from:hello3.hrb to:@: \
 		copy from:bug1.hrb to:@: \
+		copy from:bug2.hrb to:@: \
+		copy from:bug3.hrb to:@: \
 		imgout:haribote.img
 
 # ˆê”Ê‹K‘¥
