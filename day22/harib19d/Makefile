@@ -65,7 +65,7 @@ hello3.bim : hello3.obj a_nask.obj Makefile
 	$(OBJ2BIM) @$(RULEFILE) out:hello3.bim map:hello3.map hello3.obj a_nask.obj
 
 hello3.hrb : hello3.bim Makefile
-	$(BIM2HRB) hello3.bim hello3.hrb 
+	$(BIM2HRB) hello3.bim hello3.hrb  0
 
 hello4.bim : hello4.obj a_nask.obj Makefile
 	$(OBJ2BIM) @$(RULEFILE) out:hello4.bim stack:1k map:hello4.map \
