@@ -139,7 +139,7 @@ void HariMain(void)
 			char tmp[2];
 			if (256 <= i && i <= 511) { /* キーボードデータ */
 			sprintf(tmp, "%02X", i-256);
-			putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, s, 2);
+			putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, tmp, 2);
 			cursor_x += 16;
 				if (i < 0x80 + 256) { /* キーコードを文字コードに変換 */
 					if (key_shift == 0) {
