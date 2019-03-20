@@ -94,26 +94,26 @@
     94 000000A0 89 D8                           		MOV		EAX,EBX
     95 000000A2 05 00008000                     		ADD		EAX,32*1024			; 32KBを足す
     96 000000A7 2E 8B 0D 00000000               		MOV		ECX,[CS:0x0000]		; データセグメントの大きさ
-    97 000000AE 29 C1                           		SUB		ECX,EAX
-    98 000000B0 CD 40                           		INT		0x40
-    99 000000B2 5B                              		POP		EBX
-   100 000000B3 C3                              		RET
-   101 000000B4                                 
-   102 000000B4                                 _api_malloc:		; char *api_malloc(int size);
-   103 000000B4 53                              		PUSH	EBX
-   104 000000B5 BA 00000009                     		MOV		EDX,9
-   105 000000BA 2E 8B 1D 00000020               		MOV		EBX,[CS:0x0020]
-   106 000000C1 8B 4C 24 08                     		MOV		ECX,[ESP+8]			; size
-   107 000000C5 CD 40                           		INT		0x40
-   108 000000C7 5B                              		POP		EBX
-   109 000000C8 C3                              		RET
-   110 000000C9                                 
-   111 000000C9                                 _api_free:			; void api_free(char *addr, int size);
-   112 000000C9 53                              		PUSH	EBX
-   113 000000CA BA 0000000A                     		MOV		EDX,10
-   114 000000CF 2E 8B 1D 00000020               		MOV		EBX,[CS:0x0020]
-   115 000000D6 8B 44 24 08                     		MOV		EAX,[ESP+ 8]		; addr
-   116 000000DA 8B 4C 24 0C                     		MOV		ECX,[ESP+12]		; size
-   117 000000DE CD 40                           		INT		0x40
-   118 000000E0 5B                              		POP		EBX
-   119 000000E1 C3                              		RET
+    97 000000AE                                 		;SUB		ECX,EAX
+    98 000000AE CD 40                           		INT		0x40
+    99 000000B0 5B                              		POP		EBX
+   100 000000B1 C3                              		RET
+   101 000000B2                                 
+   102 000000B2                                 _api_malloc:		; char *api_malloc(int size);
+   103 000000B2 53                              		PUSH	EBX
+   104 000000B3 BA 00000009                     		MOV		EDX,9
+   105 000000B8 2E 8B 1D 00000020               		MOV		EBX,[CS:0x0020]
+   106 000000BF 8B 4C 24 08                     		MOV		ECX,[ESP+8]			; size
+   107 000000C3 CD 40                           		INT		0x40
+   108 000000C5 5B                              		POP		EBX
+   109 000000C6 C3                              		RET
+   110 000000C7                                 
+   111 000000C7                                 _api_free:			; void api_free(char *addr, int size);
+   112 000000C7 53                              		PUSH	EBX
+   113 000000C8 BA 0000000A                     		MOV		EDX,10
+   114 000000CD 2E 8B 1D 00000020               		MOV		EBX,[CS:0x0020]
+   115 000000D4 8B 44 24 08                     		MOV		EAX,[ESP+ 8]		; addr
+   116 000000D8 8B 4C 24 0C                     		MOV		ECX,[ESP+12]		; size
+   117 000000DC CD 40                           		INT		0x40
+   118 000000DE 5B                              		POP		EBX
+   119 000000DF C3                              		RET
