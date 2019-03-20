@@ -2,22 +2,22 @@ OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj \
 		int.obj fifo.obj keyboard.obj mouse.obj memory.obj sheet.obj timer.obj \
 		mtask.obj window.obj console.obj file.obj
 
-TOOLPATH = ../z_tools/
-INCPATH  = ../z_tools/haribote/
+TOOLPATH = ../../tolsetOSX/z_tools
+INCPATH  = ../../tolsetOSX/z_tools/haribote
 
-MAKE     = $(TOOLPATH)make.exe -r
-NASK     = $(TOOLPATH)nask.exe
-CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -Os -Wall -quiet
-GAS2NASK = $(TOOLPATH)gas2nask.exe -a
-OBJ2BIM  = $(TOOLPATH)obj2bim.exe
-MAKEFONT = $(TOOLPATH)makefont.exe
-BIN2OBJ  = $(TOOLPATH)bin2obj.exe
-BIM2HRB  = $(TOOLPATH)bim2hrb.exe
-RULEFILE = $(TOOLPATH)haribote/haribote.rul
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-COPY     = copy
-DEL      = del
+MAKE     = make -r
+NASK     = $(TOOLPATH)/nask
+CC1      = $(TOOLPATH)/gocc1 -I$(INCPATH)/ -Os -Wall -quiet
+GAS2NASK = $(TOOLPATH)/gas2nask -a
+MAKEFONT = $(TOOLPATH)/makefont
+OBJ2BIM  = $(TOOLPATH)/obj2bim
+BIN2OBJ  = $(TOOLPATH)/bin2obj
+BIM2HRB  = $(TOOLPATH)/bim2hrb
+RULEFILE = $(TOOLPATH)/haribote/haribote.rul
+EDIMG    = $(TOOLPATH)/edimg
+IMGTOL   = $(TOOLPATH)/imgtol
+COPY     = cp
+DEL      = rm
 
 # デフォルト動作
 
@@ -47,7 +47,7 @@ bootpack.hrb : bootpack.bim Makefile
 	$(BIM2HRB) bootpack.bim bootpack.hrb 0
 
 haribote.sys : asmhead.bin bootpack.hrb Makefile
-	copy /B asmhead.bin+bootpack.hrb haribote.sys
+	cat asmhead.bin bootpack.hrb > haribote.sys
 
 hello.hrb : hello.nas Makefile
 	$(NASK) hello.nas hello.hrb hello.lst
@@ -101,24 +101,10 @@ winhelo3.bim : winhelo3.obj a_nask.obj Makefile
 winhelo3.hrb : winhelo3.bim Makefile
 	$(BIM2HRB) winhelo3.bim winhelo3.hrb 40k
 
-star1.bim : star1.obj a_nask.obj Makefile
-	$(OBJ2BIM) @$(RULEFILE) out:star1.bim stack:1k map:star1.map \
-		star1.obj a_nask.obj
-
-star1.hrb : star1.bim Makefile
-	$(BIM2HRB) star1.bim star1.hrb 47k
-
-stars.bim : stars.obj a_nask.obj Makefile
-	$(OBJ2BIM) @$(RULEFILE) out:stars.bim stack:1k map:stars.map \
-		stars.obj a_nask.obj
-
-stars.hrb : stars.bim Makefile
-	$(BIM2HRB) stars.bim stars.hrb 47k
-
 haribote.img : ipl10.bin haribote.sys Makefile \
 		hello.hrb hello2.hrb a.hrb hello3.hrb hello4.hrb hello5.hrb \
-		winhelo.hrb winhelo2.hrb winhelo3.hrb star1.hrb stars.hrb
-	$(EDIMG)   imgin:../z_tools/fdimg0at.tek \
+		winhelo.hrb winhelo2.hrb winhelo3.hrb
+	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote.sys to:@: \
 		copy from:ipl10.nas to:@: \
@@ -132,8 +118,6 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:winhelo.hrb to:@: \
 		copy from:winhelo2.hrb to:@: \
 		copy from:winhelo3.hrb to:@: \
-		copy from:star1.hrb to:@: \
-		copy from:stars.hrb to:@: \
 		imgout:haribote.img
 
 # 一般規則
@@ -154,8 +138,8 @@ img :
 
 run :
 	$(MAKE) img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install :
 	$(MAKE) img
