@@ -94,7 +94,7 @@ _api_initmalloc:	; void api_initmalloc(void);
 		MOV		EAX,EBX
 		ADD		EAX,32*1024			; 32KBを足す
 		MOV		ECX,[CS:0x0000]		; データセグメントの大きさ
-		;SUB		ECX,EAX
+		SUB		ECX,EAX
 		INT		0x40
 		POP		EBX
 		RET
