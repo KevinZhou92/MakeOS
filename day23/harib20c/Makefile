@@ -116,7 +116,7 @@ stars.hrb : stars.bim Makefile
 	$(BIM2HRB) stars.bim stars.hrb 47k
 
 stars2.bim : stars2.obj a_nask.obj Makefile
-$(OBJ2BIM) @$(RULEFILE) out:stars2.bim stack:1k map:stars2.map \
+	$(OBJ2BIM) @$(RULEFILE) out:stars2.bim stack:1k map:stars2.map \
 	stars2.obj a_nask.obj
 
 stars2.hrb : stars2.bim Makefile
