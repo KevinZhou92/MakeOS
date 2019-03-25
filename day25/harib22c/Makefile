@@ -190,6 +190,7 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		copy from:noodle.hrb to:@: \
 		copy from:beepdown.hrb to:@: \
 		copy from:color.hrb to:@: \
+		copy from:color2.hrb to:@: \
 		imgout:haribote.img
 
 # ˆê”Ê‹K‘¥
