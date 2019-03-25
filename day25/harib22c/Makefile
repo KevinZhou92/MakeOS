@@ -170,7 +170,7 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 		winhelo.hrb winhelo2.hrb winhelo3.hrb star1.hrb stars.hrb stars2.hrb lines.hrb walk.hrb noodle.hrb \
 		beepdown.hrb color.hrb color2.hrb
 	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek  \
-		 src:ipl10.bin len:512 from:0 to:0 \
+		src:ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote.sys to:@: \
 		copy from:ipl10.nas to:@: \
 		copy from:make.bat to:@: \
