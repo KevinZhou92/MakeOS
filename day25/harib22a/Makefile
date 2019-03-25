@@ -144,7 +144,7 @@ noodle.bim : noodle.obj a_nask.obj Makefile
 noodle.hrb : noodle.bim Makefile
 	$(BIM2HRB) noodle.bim noodle.hrb 40k
 
-eepdown.bim : beepdown.obj a_nask.obj Makefile
+beepdown.bim : beepdown.obj a_nask.obj Makefile
 	$(OBJ2BIM) @$(RULEFILE) out:beepdown.bim stack:1k map:beepdown.map \
 		beepdown.obj a_nask.obj
 
