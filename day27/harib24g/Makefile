@@ -45,8 +45,8 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 
 # ƒRƒ}ƒ“ƒh
 
-# img:
-# 	$(MAKE) haribote.img
+img:
+	$(MAKE) haribote.img
 
 run :
 	$(MAKE) img
