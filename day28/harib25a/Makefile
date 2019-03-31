@@ -19,7 +19,8 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		winhelo/winhelo.hrb winhelo2/winhelo2.hrb winhelo3/winhelo3.hrb \
 		star1/star1.hrb stars/stars.hrb stars2/stars2.hrb \
 		lines/lines.hrb walk/walk.hrb noodle/noodle.hrb \
-		beepdown/beepdown.hrb color/color.hrb color2/color2.hrb
+		beepdown/beepdown.hrb color/color.hrb color2/color2.hrb \
+		sosu/sosu.hrb sosu2/sosu2.hrb sosu3/sosu3.hrb
 	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:haribote/ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote/haribote.sys to:@: \
