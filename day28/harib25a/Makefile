@@ -41,6 +41,9 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		copy from:beepdown/beepdown.hrb to:@: \
 		copy from:color/color.hrb to:@: \
 		copy from:color2/color2.hrb to:@: \
+		copy from:sosu/sosu.hrb to:@: \
+		copy from:sosu2/sosu2.hrb to:@: \
+		copy from:sosu3/sosu3.hrb to:@: \
 		imgout:haribote.img
 
 # ƒRƒ}ƒ“ƒh
