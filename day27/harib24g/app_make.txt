@@ -5,7 +5,7 @@ HARIBOTEPATH = ../haribote/
 
 MAKE     = make -r
 NASK     = $(TOOLPATH)/nask
-CC1      = $(TOOLPATH)/gocc1 -I$(INCPATH)/:../ -Os -Wall -quiet
+CC1      = $(TOOLPATH)/gocc1 -I$(INCPATH)/ -I../ -Os -Wall -quiet
 GAS2NASK = $(TOOLPATH)/gas2nask -a
 MAKEFONT = $(TOOLPATH)/makefont
 OBJ2BIM  = $(TOOLPATH)/obj2bim
