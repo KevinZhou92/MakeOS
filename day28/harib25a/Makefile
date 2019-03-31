@@ -124,6 +124,9 @@ clean_full :
 	$(MAKE) -C beepdown		clean
 	$(MAKE) -C color		clean
 	$(MAKE) -C color2		clean
+	$(MAKE) -C sosu			clean
+	$(MAKE) -C sosu2		clean
+	$(MAKE) -C sosu3		clean
 
 src_only_full :
 	$(MAKE) -C haribote		src_only
@@ -144,6 +147,9 @@ src_only_full :
 	$(MAKE) -C beepdown		src_only
 	$(MAKE) -C color		src_only
 	$(MAKE) -C color2		src_only
+	$(MAKE) -C sosu			src_only
+	$(MAKE) -C sosu2		src_only
+	$(MAKE) -C sosu3		src_only
 	-$(DEL) haribote.img
 
 refresh :
