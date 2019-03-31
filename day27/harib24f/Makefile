@@ -210,10 +210,7 @@ haribote.img : ipl10.bin haribote.sys Makefile \
 img :
 	$(MAKE) haribote.img
 
-run :
-	$(MAKE) img
-	$(COPY) haribote.img $(TOOLPATH)/qemu/
-	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
+–≠
 
 install :
 	$(MAKE) img

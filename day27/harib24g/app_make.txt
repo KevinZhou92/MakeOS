@@ -54,9 +54,9 @@ haribote.img : ../haribote/ipl10.bin ../haribote/haribote.sys $(APP).hrb \
 # ƒRƒ}ƒ“ƒh
 
 run :
-	$(MAKE) haribote.img
-	$(COPY) haribote.img ..\..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../../z_tools/qemu
+	$(MAKE) img
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 full :
 	$(MAKE) -C $(APILIBPATH)
