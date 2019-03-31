@@ -3,8 +3,8 @@ OBJS_API =	api001.obj api002.obj api003.obj api004.obj api005.obj api006.obj \
 			api013.obj api014.obj api015.obj api016.obj api017.obj api018.obj \
 			api019.obj api020.obj
 
-TOOLPATH = ../../z_tools/
-INCPATH  = ../../z_tools/haribote/
+TOOLPATH = ../../tolsetOSX/z_tools
+INCPATH  = ../../tolsetOSX/z_tools/haribote
 
 MAKE     = make -r
 NASK     = $(TOOLPATH)/nask
