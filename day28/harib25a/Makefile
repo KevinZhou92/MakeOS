@@ -1,27 +1,26 @@
-TOOLPATH = ../z_tools/
-INCPATH  = ../z_tools/haribote/
+TOOLPATH = ../../tolsetOSX/z_tools
+INCPATH  = ../../tolsetOSX/z_tools/haribote
 
-MAKE     = $(TOOLPATH)make.exe -r
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-COPY     = copy
-DEL      = del
+MAKE     = make -r
+EDIMG    = $(TOOLPATH)/edimg
+IMGTOL   = $(TOOLPATH)/imgtol
+COPY     = cp
+DEL      = rm
 
-# ÉfÉtÉHÉãÉgìÆçÏ
+# ∆íf∆ít∆íH∆í‚Äπ∆íg‚Äú¬Æ¬ç√¨
 
 default :
 	$(MAKE) haribote.img
 
-# ÉtÉ@ÉCÉãê∂ê¨ãKë•
+# ∆ít∆í@∆íC∆í‚Äπ¬ê¬∂¬ê¬¨‚ÄπK‚Äò¬•
 
 haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		a/a.hrb hello3/hello3.hrb hello4/hello4.hrb hello5/hello5.hrb \
 		winhelo/winhelo.hrb winhelo2/winhelo2.hrb winhelo3/winhelo3.hrb \
 		star1/star1.hrb stars/stars.hrb stars2/stars2.hrb \
 		lines/lines.hrb walk/walk.hrb noodle/noodle.hrb \
-		beepdown/beepdown.hrb color/color.hrb color2/color2.hrb \
-		sosu/sosu.hrb sosu2/sosu2.hrb sosu3/sosu3.hrb
-	$(EDIMG)   imgin:../z_tools/fdimg0at.tek \
+		beepdown/beepdown.hrb color/color.hrb color2/color2.hrb
+	$(EDIMG)   imgin:$(TOOLPATH)/fdimg0at.tek \
 		wbinimg src:haribote/ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote/haribote.sys to:@: \
 		copy from:haribote/ipl10.nas to:@: \
@@ -42,17 +41,17 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		copy from:beepdown/beepdown.hrb to:@: \
 		copy from:color/color.hrb to:@: \
 		copy from:color2/color2.hrb to:@: \
-		copy from:sosu/sosu.hrb to:@: \
-		copy from:sosu2/sosu2.hrb to:@: \
-		copy from:sosu3/sosu3.hrb to:@: \
 		imgout:haribote.img
 
-# ÉRÉ}ÉìÉh
+# ∆íR∆í}∆í‚Äú∆íh
+
+img:
+	$(MAKE) haribote.img
 
 run :
-	$(MAKE) haribote.img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(MAKE) img
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install :
 	$(MAKE) haribote.img
@@ -77,16 +76,13 @@ full :
 	$(MAKE) -C beepdown
 	$(MAKE) -C color
 	$(MAKE) -C color2
-	$(MAKE) -C sosu
-	$(MAKE) -C sosu2
-	$(MAKE) -C sosu3
 	$(MAKE) haribote.img
 
 run_full :
 	$(MAKE) full
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
-
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
+	
 install_full :
 	$(MAKE) full
 	$(IMGTOL) w a: haribote.img
@@ -96,7 +92,7 @@ run_os :
 	$(MAKE) run
 
 clean :
-# âΩÇ‡ÇµÇ»Ç¢
+# ‚Ä∞¬Ω‚Äö√†‚Äö¬µ‚Äö√à‚Äö¬¢
 
 src_only :
 	$(MAKE) clean
@@ -121,9 +117,6 @@ clean_full :
 	$(MAKE) -C beepdown		clean
 	$(MAKE) -C color		clean
 	$(MAKE) -C color2		clean
-	$(MAKE) -C sosu			clean
-	$(MAKE) -C sosu2		clean
-	$(MAKE) -C sosu3		clean
 
 src_only_full :
 	$(MAKE) -C haribote		src_only
@@ -144,9 +137,6 @@ src_only_full :
 	$(MAKE) -C beepdown		src_only
 	$(MAKE) -C color		src_only
 	$(MAKE) -C color2		src_only
-	$(MAKE) -C sosu			src_only
-	$(MAKE) -C sosu2		src_only
-	$(MAKE) -C sosu3		src_only
 	-$(DEL) haribote.img
 
 refresh :
