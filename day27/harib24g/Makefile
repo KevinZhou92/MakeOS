@@ -7,12 +7,12 @@ IMGTOL   = $(TOOLPATH)/imgtol
 COPY     = cp
 DEL      = rm
 
-# ƒfƒtƒHƒ‹ƒg“®ì
+# Æ’fÆ’tÆ’HÆ’â€¹Æ’gâ€œÂ®ÂÃ¬
 
 default :
 	$(MAKE) haribote.img
 
-# ƒtƒ@ƒCƒ‹¶¬‹K‘¥
+# Æ’tÆ’@Æ’CÆ’â€¹ÂÂ¶ÂÂ¬â€¹Kâ€˜Â¥
 
 haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		a/a.hrb hello3/hello3.hrb hello4/hello4.hrb hello5/hello5.hrb \
@@ -43,12 +43,15 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		copy from:color2/color2.hrb to:@: \
 		imgout:haribote.img
 
-# ƒRƒ}ƒ“ƒh
+# Æ’RÆ’}Æ’â€œÆ’h
+
+img:
+	$(MAKE) haribote.img
 
 run :
-	$(MAKE) haribote.img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(MAKE) img
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install :
 	$(MAKE) haribote.img
@@ -77,9 +80,9 @@ full :
 
 run_full :
 	$(MAKE) full
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
-
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
+	
 install_full :
 	$(MAKE) full
 	$(IMGTOL) w a: haribote.img
@@ -89,7 +92,7 @@ run_os :
 	$(MAKE) run
 
 clean :
-# ‰½‚à‚µ‚È‚¢
+# â€°Â½â€šÃ â€šÂµâ€šÃˆâ€šÂ¢
 
 src_only :
 	$(MAKE) clean
