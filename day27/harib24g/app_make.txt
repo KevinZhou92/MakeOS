@@ -1,5 +1,5 @@
 TOOLPATH = ../../../tolsetOSX/z_tools
-INCPATH  = ../
+INCPATH  = ..
 APILIBPATH   = ../apilib/
 HARIBOTEPATH = ../haribote/
 
