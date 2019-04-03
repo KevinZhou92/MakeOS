@@ -2,10 +2,26 @@ APP      = gview
 STACK    = 4480k
 MALLOC   = 0k
 
-TOOLPATH = ../../z_tools/
-INCPATH  = ../../z_tools/haribote/
+TOOLPATH = ../../../tolsetOSX/z_tools
+INCPATH  = ../../../tolsetOSX/z_tools/haribote
 APILIBPATH   = ../apilib/
 HARIBOTEPATH = ../haribote/
+
+MAKE     = make -r
+NASK     = $(TOOLPATH)/nask
+CC1      = $(TOOLPATH)/gocc1 -I$(INCPATH)/ -I../ -Os -Wall -quiet
+GAS2NASK = $(TOOLPATH)/gas2nask -a
+MAKEFONT = $(TOOLPATH)/makefont
+OBJ2BIM  = $(TOOLPATH)/obj2bim
+BIN2OBJ  = $(TOOLPATH)/bin2obj
+BIM2HRB  = $(TOOLPATH)/bim2hrb
+BIM2BIN  = $(TOOLPATH)/bim2bin
+RULEFILE = $(TOOLPATH)/haribote/haribote.rul
+EDIMG    = $(TOOLPATH)/edimg
+IMGTOL   = $(TOOLPATH)/imgtol
+GOLIB    = $(TOOLPATH)/golib00
+COPY     = cp
+DEL      = rm
 
 MAKE     = $(TOOLPATH)make.exe -r
 NASK     = $(TOOLPATH)nask.exe
