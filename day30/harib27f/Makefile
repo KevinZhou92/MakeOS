@@ -71,9 +71,9 @@ haribote.img : haribote/ipl09.bin haribote/haribote.sys Makefile \
 # ƒRƒ}ƒ“ƒh
 
 run :
-	$(MAKE) haribote.img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(MAKE) img
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install :
 	$(MAKE) haribote.img
@@ -115,8 +115,8 @@ full :
 
 run_full :
 	$(MAKE) full
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) haribote.img $(TOOLPATH)/qemu/
+	$(MAKE) -C $(TOOLPATH)/qemu IMG=haribote.img
 
 install_full :
 	$(MAKE) full
