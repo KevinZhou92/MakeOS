@@ -105,8 +105,8 @@ img :
 run :
 	-$(DEL) osakkie.img
 	$(MAKE) img
-	$(COPY) osakkie.img ../z_tools/qemu/fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) osakkie.img ../z_tools/qemu/
+	$(MAKE) -C ../z_tools/qemu IMG=osakkie.img
 
 install :
 	$(MAKE) img
