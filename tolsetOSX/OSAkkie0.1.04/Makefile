@@ -1,4 +1,4 @@
-$APP_LIST = \
+APP_LIST = \
 	apps/1line/1line.hrb \
 	apps/bball/bball.hrb \
 	apps/bonno/bonno.hrb \
